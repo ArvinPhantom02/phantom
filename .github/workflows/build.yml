@@ -11,11 +11,11 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.7
       - run: unzip -q PhantomGamingAssistant.zip
+      - run: sed -i 's/import android.content.ColorStateList/import android.content.res.ColorStateList/' PhantomGamingAssistant/app/src/main/java/com/phantom/gamingassistant/OverlayService.kt
       - run: gradle -p PhantomGamingAssistant assembleDebug
       - uses: actions/upload-artifact@v4
         with:
